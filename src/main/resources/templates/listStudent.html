@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div>
+    <div style="float: left"><a href="addStudent">Add New Student</a></div>
+    <div style="float: right"><a href="courseList">Course Lists</a></div>
+</div>
+<p>
+<div th:if="${param.msg != ''}"><p th:text="#{msg.success}"></p></div>
+</p>
+<div>
+    <table border="1" width="100%" class="table table-hover">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Family</td>
+            <td>employee Date</td>
+            <td>Show Assets</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="emp:${empList}">
+            <td th:text="${emp.id}"></td>
+            <td th:text="${emp.name}"></td>
+            <td th:text="${emp.family}"></td>
+            <td th:text="${#dates.format(emp.employeeDate, 'yyyy/MM/dd')}"></td>
+            <td><a th:href="@{/showCourseList/{empid}(empid=${emp.id})}">Courses</a></td>
+            <td><a th:href="@{/editStudent/{empid}(empid=${emp.id})}">Edit</a></td>
+            <td><a th:href="@{/deleteStudent/{empid}(empid=${emp.id})}">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

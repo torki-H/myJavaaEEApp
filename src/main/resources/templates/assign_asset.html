@@ -1,0 +1,31 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assign Asset to Employee</title>
+</head>
+<body>
+<h2>Assign Asset to Employee</h2>
+
+<form:form method="post" action="/assignAsset" modelAttribute="assignAssetToEmployee">
+    <label for="assetId">Select Asset:</label>
+    <select id="assetId" name="assetId">
+        <c:forEach items="${assets}" var="asset">
+            <option value="${asset.id}">${asset.name}</option>
+        </c:forEach>
+    </select>
+
+    <label for="employeeId">Select Employee:</label>
+    <select id="employeeId" name="employeeId">
+        <c:forEach items="${employees}" var="employee">
+            <option value="${employee.id}">${employee.name}</option>
+        </c:forEach>
+    </select>
+
+    <input type="submit" value="Assign">
+</form:form>
+
+</body>
+</html>
