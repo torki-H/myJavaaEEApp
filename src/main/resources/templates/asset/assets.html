@@ -55,6 +55,7 @@
             <th> Asset Title </th>
             <th> Asset Description </th>
             <th> Asset Healthy Status </th>
+            <th> category </th>
             <th> Actions</th>
 
         </tr>
@@ -66,6 +67,7 @@
             <td th:text = "${asset.title}"></td>
             <td th:text = "${asset.description}"></td>
             <td th:text = "${asset.healthyStatus}"></td>
+            <td th:text = "${asset.categoryEntity.getDescription()}"></td>
             <td>
                 <a th:href = "@{/assets/edit/{id}(id=${asset.id})}"
                    class = "btn btn-primary">Update</a>
