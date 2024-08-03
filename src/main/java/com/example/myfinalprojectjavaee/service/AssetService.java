@@ -4,6 +4,7 @@ import com.example.myfinalprojectjavaee.dao.AssetRepo;
 import com.example.myfinalprojectjavaee.dao.EmployeeRepo;
 import com.example.myfinalprojectjavaee.dao.Employee_AssetRepo;
 import com.example.myfinalprojectjavaee.entity.AssetEntity;
+import com.example.myfinalprojectjavaee.entity.EmployeeEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -80,6 +81,7 @@ public class AssetService {
 
     public AssetEntity getAssetEntityById(int id) {
         return assetRepo.findById(id).get();
+        //return assetRepo.findById(id);
     }
 
     public AssetEntity updateAssetEntity(AssetEntity AssetEntity) {

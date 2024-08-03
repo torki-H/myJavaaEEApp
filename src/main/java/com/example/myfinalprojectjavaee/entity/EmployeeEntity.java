@@ -30,9 +30,8 @@ public class EmployeeEntity// extends JpaEntity
     //@StringTimeFormat(pattern = "yyyyMMdd")
     private String employedDate;
 
-    //@Column????
-    @OneToMany(targetEntity = Employee_AssetEntity.class,fetch = FetchType.LAZY  )
-    @JoinColumn(name = "FK_EmpID",referencedColumnName = "EmpID"/*"CID"*/)//درس و ثبت نام
+    @OneToMany(targetEntity = Employee_AssetEntity.class,fetch = FetchType.LAZY ,cascade = CascadeType.ALL )
+    @JoinColumn(name = "FK_EmpID",referencedColumnName = "EmpID")
     private List<Employee_AssetEntity> employeeAssetEntityList;
 
     public EmployeeEntity(String name, String family, String employedDate

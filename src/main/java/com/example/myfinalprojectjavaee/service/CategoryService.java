@@ -1,19 +1,37 @@
 package com.example.myfinalprojectjavaee.service;
 
 import com.example.myfinalprojectjavaee.dao.CategoryRepo;
+import com.example.myfinalprojectjavaee.entity.CategoryEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class CategoryService {
-    @Autowired
     private CategoryRepo categoryRepo;
-//    public List<AssetEntity> listAssets(int cid){
-//        Optional<AssetEntity> one = assetRepo.findById(cid);
-//        if (!one.isPresent())
-//            throw new UniversityException("Invalid Course ID");
-//        AssetEntity AssetEntity = one.get();
-//        List<AssetEntity> registers = AssetEntity.getRegisters();
-//        return registers;
-//    }
+
+    @Autowired
+    public CategoryService(CategoryRepo categoryRepo) {
+        this.categoryRepo = categoryRepo;
+    }
+
+
+    public CategoryEntity getCategoryById(int id) {
+        Optional<CategoryEntity> optionalCategory = categoryRepo.findById(id);
+        return optionalCategory.orElse(null);
+    }
+
+    public CategoryEntity saveCategory(CategoryEntity category) {
+        return categoryRepo.save(category);
+    }
+
+    public void deleteCategory(int id) {
+        categoryRepo.deleteById(id);
+    }
+
+    public List<CategoryEntity> getAllCategories() {
+        return categoryRepo.findAll();
+    }
 }

@@ -12,15 +12,13 @@ import java.util.List;
 @Data
 @ToString
 @NoArgsConstructor
-public class AssetEntity// extends JpaEntity
+public class AssetEntity
     {
     @Id
-    @Column(name = "AssetID"/*,columnDefinition = "NUMBER"*/)
+    @Column(name = "AssetID")
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "assetSeq")
     @SequenceGenerator(name = "assetSeq",allocationSize = 1,sequenceName = "ASSET_SEQ")
     private int id;
-//    @Column
-//    private int identificationNumber;
     @Column
     private String title;
     @Column
@@ -28,8 +26,8 @@ public class AssetEntity// extends JpaEntity
     @Column
     private String description;
 
-    @OneToMany(targetEntity = Employee_AssetEntity.class,fetch = FetchType.LAZY )
-    @JoinColumn(name = "FK_AssetID",referencedColumnName = "AssetID"/*"CID"*/)//درس و ثبت نام
+    @OneToMany(targetEntity = Employee_AssetEntity.class,fetch = FetchType.LAZY,cascade = CascadeType.ALL )
+    @JoinColumn(name = "FK_AssetID",referencedColumnName = "AssetID")
     private List<Employee_AssetEntity> employeeAssetEntityList;
 
 

@@ -10,15 +10,13 @@ import lombok.ToString;
 @Data
 @ToString
 @NoArgsConstructor
-public class CategoryEntity// extends JpaEntity
+public class CategoryEntity
 {
     @Id
     @Column(name = "CategoriID")
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "categorySeq")
     @SequenceGenerator(name = "categorySeq",allocationSize = 1,sequenceName = "CATEGORY_SEQ")
     private int Id;
-//    @Column
-//    private int identificationNumber;
 
     @Column
     private String  description;

@@ -2,6 +2,7 @@ package com.example.myfinalprojectjavaee.service;
 
 import com.example.myfinalprojectjavaee.dao.EmployeeRepo;
 import com.example.myfinalprojectjavaee.entity.EmployeeEntity;
+import com.example.myfinalprojectjavaee.entity.Employee_AssetEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -18,10 +19,6 @@ public class EmployeeService {
 
        return employeeRepo.findAll();
     }
-
-  /*  public void AddEmployee(EmployeeEntity employeeEntity){
-        employeeRepo.save(employeeEntity);
-    }*/
 
     public List<EmployeeEntity> searchByNameAndFamily(String name,String family){
         return employeeRepo.findAllByNameAndFamily(name,family);
@@ -96,6 +93,7 @@ public class EmployeeService {
 
     public EmployeeEntity getEmployeeEntityById(int id) {
         return employeeRepo.findById(id).get();
+        //return employeeRepo.findById(id);
     }
 
     public EmployeeEntity updateEmployeeEntity(EmployeeEntity EmployeeEntity) {
