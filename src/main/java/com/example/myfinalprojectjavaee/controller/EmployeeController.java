@@ -37,7 +37,6 @@ public class EmployeeController {
     @GetMapping("/employees/new")
     public String createemployeeForm(Model model) {
 
-        // create student object to hold student form data
         EmployeeEntity EmployeeEntity=new EmployeeEntity();
         model.addAttribute("employee", EmployeeEntity);
         return "employee/create_employee";
@@ -59,22 +58,18 @@ public class EmployeeController {
 
     @PostMapping("/employees/{id}")
     public String updateStudent(@PathVariable int id,
-                                @ModelAttribute("employee") EmployeeEntity EmployeeEntity,
-                                Model model) {
+                                @ModelAttribute("employee") EmployeeEntity EmployeeEntity){
+                          //      Model model) {
 
-        // get student from database by id
         EmployeeEntity existingemployee = EmployeeService.getEmployeeEntityById(id);
         existingemployee.setId(id);
         existingemployee.setEmployedDate(EmployeeEntity.getEmployedDate());
         existingemployee.setName(EmployeeEntity.getName());
         existingemployee.setFamily(EmployeeEntity.getFamily());
         existingemployee.setEmployeeAssetEntityList(EmployeeEntity.getEmployeeAssetEntityList());
-        // save updated student object
         EmployeeService.updateEmployeeEntity(existingemployee);
         return "redirect:/employees";
     }
-
-    // handler method to handle delete student request
 
     @GetMapping("/employees/{id}")
     public String deleteStudent(@PathVariable int id) {
@@ -105,17 +100,12 @@ public class EmployeeController {
 
     @PostMapping("/allocateAsset")
     public String allocateAsset(@RequestParam("employeeId") int employeeId, @RequestParam("assetId") int assetId) {
-        //EmployeeEntity employee = EmployeeService.getEmployeeEntityById(employeeId).orElseThrow(() -> new IllegalArgumentException("Invalid employee ID"));
         EmployeeEntity employee = EmployeeService.getEmployeeEntityById(employeeId);
-
         AssetEntity asset = assetService.getAssetEntityById(assetId);
-
         Employee_AssetEntity assetAllocation = new Employee_AssetEntity();
         assetAllocation.setEmployeeEntity(employee);
         assetAllocation.setAssetEntity(asset);
-
-        employeeAssetService.saveAssignAssetToEmployee(employeeId,assetId);
-
+        employeeAssetService.assignEmployeeToAsset(employeeId,assetId);
         return "redirect:/assets";
     }
 

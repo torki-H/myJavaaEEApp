@@ -1,5 +1,7 @@
+<%@ page contentType="text/html; charset=ISO-8859-1" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <meta charset="ISO-8859-1">
     <title>Employee Management System</title>
@@ -10,22 +12,17 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <!-- Brand -->
     <a class="navbar-brand" href="#">Employee Management System</a>
-
-    <!-- Toggler/collapsibe Button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
-
-    <!-- Navbar links -->
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/employees}">Employee Management</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/employees">Employee Management</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/employees}">Teacher Management</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/teachers">Teacher Management</a>
             </li>
         </ul>
     </div>
@@ -38,7 +35,7 @@
 
     <div class="row">
         <div class="col-lg-3">
-                <a th:href = "@{/employees}" class = "btn btn-primary btn-sm mb-3">Back</a>
+            <a href="${pageContext.request.contextPath}/employees" class="btn btn-primary btn-sm mb-3">Back</a>
         </div>
     </div>
 
@@ -49,32 +46,27 @@
             <th> Employee Name</th>
             <th> Employee Family</th>
             <th> Employee Date </th>
-            <!--            <th> Employee employeeAssetEntityList </th>-->
             <th> Actions</th>
-
         </tr>
         </thead>
 
         <tbody>
-        <tr th:each="employee : ${employees}">
-            <td th:text="${employee.id}"></td>
-            <td th:text="${employee.name}"></td>
-            <td th:text="${employee.family}"></td>
-            <td th:text="${employee.employedDate}"></td>
-            <!--            <td th:text = "${employee.employeeAssetEntityList}"></td>-->
-            <td>
-                <a th:href="@{/employees/edit/{id}(id=${employee.id})}"
-                   class="btn btn-primary">Update</a>
-
-                <a th:href="@{/employees/{id}(id=${employee.id})}"
-                   class="btn btn-danger">Delete</a>
-
-            </td>
-        </tr>
+        <c:forEach var="employee" items="${employees}">
+            <tr>
+                <td>${employee.id}</td>
+                <td>${employee.name}</td>
+                <td>${employee.family}</td>
+                <td>${employee.employedDate}</td>
+                <td>
+                    <a href="${pageContext.request.contextPath}/employees/edit/${employee.id}"
+                       class="btn btn-primary">Update</a>
+                    <a href="${pageContext.request.contextPath}/employees/${employee.id}"
+                       class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        </c:forEach>
         </tbody>
-
     </table>
-
 </div>
 </body>
 </html>
