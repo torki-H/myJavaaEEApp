@@ -26,8 +26,8 @@ public class AssetEntity
     @Column
     private String description;
 
-    @OneToMany(targetEntity = Employee_AssetEntity.class,fetch = FetchType.LAZY,cascade = CascadeType.ALL )
-    @JoinColumn(name = "FK_AssetID",referencedColumnName = "AssetID")
+        @OneToMany(targetEntity = Employee_AssetEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+        @JoinColumn(name = "FK_AssetID",referencedColumnName = "AssetID")
     private List<Employee_AssetEntity> employeeAssetEntityList;
 
 

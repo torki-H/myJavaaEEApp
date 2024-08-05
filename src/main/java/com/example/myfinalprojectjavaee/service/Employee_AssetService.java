@@ -9,7 +9,10 @@ import com.example.myfinalprojectjavaee.entity.Employee_AssetEntity;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class Employee_AssetService {
@@ -48,11 +51,13 @@ public class Employee_AssetService {
     private EmployeeRepo employeeRepo;
 
     public void assignEmployeeToAsset(int assetId, int employeeId) {
-        EmployeeEntity employee = employeeRepo.findById(employeeId)
-                .orElseThrow(() -> new EntityNotFoundException("کارمند با ID " + employeeId + " پیدا نشد."));
+        System.out.println("Searching for Employee ID: " + employeeId); // دیباگ
 
-        AssetEntity asset = assetRepo.findById(assetId)
-                .orElseThrow(() -> new EntityNotFoundException("دارایی با ID " + assetId + " پیدا نشد."));
+        EmployeeEntity employee = employeeRepo.findEmployeeEntityById(employeeId);
+                //.orElseThrow(() -> new EntityNotFoundException("کارمند با ID " + employeeId + " پیدا نشد."));
+
+        AssetEntity asset = assetRepo.findAssetEntityById(assetId);
+                //.orElseThrow(() -> new EntityNotFoundException("دارایی با ID " + assetId + " پیدا نشد."));
 
         Employee_AssetEntity assignment = new Employee_AssetEntity();
         assignment.setEmployeeEntity(employee);
@@ -63,5 +68,9 @@ public class Employee_AssetService {
 
     public List<Employee_AssetEntity> findAll() {
         return employeeAssetRepo.findAll();
+    }
+
+    public List<Employee_AssetEntity> findEmployeeAssetById(int id) {
+        return employeeAssetRepo.findAllById(Collections.singleton(id));
     }
 }

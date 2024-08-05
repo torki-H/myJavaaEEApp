@@ -77,10 +77,10 @@ public class EmployeeController {
         return "redirect:/employees";
     }
 
-    @GetMapping("/search")
-    public String searchEmployeeForm() {
-        return "employee/search_employee";
-    }
+//    @GetMapping("/search")
+//    public String searchEmployeeForm() {
+//        return "employee/search_employee";
+//    }
 
     @PostMapping("/search")
     public String searchEmployeeByName(@RequestParam("name") String name, Model model) {

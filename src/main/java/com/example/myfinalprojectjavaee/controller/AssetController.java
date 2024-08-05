@@ -3,6 +3,7 @@ package com.example.myfinalprojectjavaee.controller;
 import com.example.myfinalprojectjavaee.entity.AssetEntity;
 import com.example.myfinalprojectjavaee.entity.CategoryEntity;
 import com.example.myfinalprojectjavaee.entity.EmployeeEntity;
+import com.example.myfinalprojectjavaee.entity.Employee_AssetEntity;
 import com.example.myfinalprojectjavaee.service.AssetService;
 import com.example.myfinalprojectjavaee.service.CategoryService;
 import com.example.myfinalprojectjavaee.service.EmployeeService;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class AssetController {
@@ -44,6 +46,16 @@ public class AssetController {
         return "redirect:/assets";
 
     }
+
+
+
+    @PostMapping("/assetSearch")
+    public String searchAssetByTitle(@RequestParam("title") String title, Model model) {
+        List<AssetEntity> assets = assetService.searchAssets(title);
+        model.addAttribute("assets", assets);
+        return "asset/search_asset";
+    }
+
 
     @GetMapping("/assets/new")
     public String createAssetForm(Model model) {
@@ -83,6 +95,11 @@ public class AssetController {
         return "redirect:/assets";
     }
 
+//    @DeleteMapping("/assets/{id}")
+//    public String deleteAsset(@PathVariable int id) {
+//        assetService.deleteAssetEntityById(id);
+//        return "redirect:/assets";
+//    }
     @PostMapping("/assets/{id}")
     public String updateStudent(@PathVariable int id,
                                 @ModelAttribute("asset") AssetEntity assetEntity){

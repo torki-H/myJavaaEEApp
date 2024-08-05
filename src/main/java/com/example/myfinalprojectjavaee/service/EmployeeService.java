@@ -54,9 +54,9 @@ public class EmployeeService {
         return employeeRepo.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
-    public Optional<EmployeeEntity> getOne(int id){
-        return employeeRepo.findById(id);
-    }
+//    public Optional<EmployeeEntity> getOne(int id){
+//        return employeeRepo.findById(id);
+//    }
 
 
 
@@ -92,8 +92,8 @@ public class EmployeeService {
     }
 
     public EmployeeEntity getEmployeeEntityById(int id) {
-        return employeeRepo.findById(id).get();
-        //return employeeRepo.findById(id);
+        //return employeeRepo.findById(id).get();
+        return employeeRepo.findEmployeeEntityById(id);
     }
 
     public EmployeeEntity updateEmployeeEntity(EmployeeEntity EmployeeEntity) {

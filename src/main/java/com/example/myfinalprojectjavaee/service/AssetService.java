@@ -5,6 +5,7 @@ import com.example.myfinalprojectjavaee.dao.EmployeeRepo;
 import com.example.myfinalprojectjavaee.dao.Employee_AssetRepo;
 import com.example.myfinalprojectjavaee.entity.AssetEntity;
 import com.example.myfinalprojectjavaee.entity.EmployeeEntity;
+import com.example.myfinalprojectjavaee.entity.Employee_AssetEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -80,21 +81,33 @@ public class AssetService {
     }
 
     public AssetEntity getAssetEntityById(int id) {
-        return assetRepo.findById(id).get();
-        //return assetRepo.findById(id);
+        //return assetRepo.findById(id).get();
+        return assetRepo.findAssetEntityById(id);
     }
 
     public AssetEntity updateAssetEntity(AssetEntity AssetEntity) {
         return assetRepo.save(AssetEntity);
     }
 
-    public void deleteAssetEntityById(int id) {
-        assetRepo.deleteById(id);
-    }
+//    public void deleteAssetEntityById(int id) {
+//        assetRepo.deleteById(id);
+//    }
 
     public List<AssetEntity> searchAssets(String title){
         return assetRepo.findByTitleLike("%" + title + "%");
 
+    }
+
+
+    public void deleteAssetEntityById(int id) {
+        // ابتدا موجودیت‌های وابسته را پیدا کن
+        List<Employee_AssetEntity> employeeAssetEntities = employeeAssetRepo.findById(id);
+        for (Employee_AssetEntity asset : employeeAssetEntities) {
+            employeeAssetRepo.delete(asset);
+        }
+
+        // حالا موجودیت اصلی را حذف کن
+        assetRepo.deleteById(id);
     }
 
 
