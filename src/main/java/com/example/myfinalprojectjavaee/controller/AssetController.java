@@ -76,10 +76,8 @@ public class AssetController {
     }
     @PostMapping("/assets/{assetId}/assign")
     public String assignEmployees(@PathVariable("assetId") int assetId, @RequestParam List<Integer> employeeIds) {
-        for (int employeeId : employeeIds) {
-            employeeAssetService.assignEmployeeToAsset(employeeId, assetId);
-        }
-        return "redirect:/assets/assets";
+        employeeAssetService.assignEmployeeToAsset(assetId, employeeIds);
+        return "redirect:/assets";
     }
     @GetMapping("/assets/edit/{id}")
     public String editAssetForm(@PathVariable int id, Model model) {

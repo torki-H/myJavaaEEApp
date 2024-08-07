@@ -16,10 +16,10 @@ import java.util.List;
 @Controller
 
 public class EmployeeController {
-    private EmployeeService EmployeeService ;
+    private EmployeeService EmployeeService;
 
     @Autowired
-    private AssetService assetService ;
+    private AssetService assetService;
     @Autowired
     private Employee_AssetService employeeAssetService;
 
@@ -37,7 +37,7 @@ public class EmployeeController {
     @GetMapping("/employees/new")
     public String createemployeeForm(Model model) {
 
-        EmployeeEntity EmployeeEntity=new EmployeeEntity();
+        EmployeeEntity EmployeeEntity = new EmployeeEntity();
         model.addAttribute("employee", EmployeeEntity);
         return "employee/create_employee";
 
@@ -58,8 +58,8 @@ public class EmployeeController {
 
     @PostMapping("/employees/{id}")
     public String updateStudent(@PathVariable int id,
-                                @ModelAttribute("employee") EmployeeEntity EmployeeEntity){
-                          //      Model model) {
+                                @ModelAttribute("employee") EmployeeEntity EmployeeEntity) {
+        //      Model model) {
 
         EmployeeEntity existingemployee = EmployeeService.getEmployeeEntityById(id);
         existingemployee.setId(id);
@@ -105,7 +105,7 @@ public class EmployeeController {
         Employee_AssetEntity assetAllocation = new Employee_AssetEntity();
         assetAllocation.setEmployeeEntity(employee);
         assetAllocation.setAssetEntity(asset);
-        employeeAssetService.assignEmployeeToAsset(employeeId,assetId);
+        employeeAssetService.assignEmployeeToAsset(assetId, List.of(employeeId));
         return "redirect:/assets";
     }
 

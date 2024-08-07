@@ -4,8 +4,6 @@ import com.example.myfinalprojectjavaee.dao.AssetRepo;
 import com.example.myfinalprojectjavaee.dao.EmployeeRepo;
 import com.example.myfinalprojectjavaee.dao.Employee_AssetRepo;
 import com.example.myfinalprojectjavaee.entity.AssetEntity;
-import com.example.myfinalprojectjavaee.entity.EmployeeEntity;
-import com.example.myfinalprojectjavaee.entity.Employee_AssetEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,10 +66,6 @@ public class AssetService {
 //    }
 
 
-
-
-
-
     public List<AssetEntity> getAllAssetEntitys() {
         return assetRepo.findAll();
     }
@@ -93,7 +87,7 @@ public class AssetService {
 //        assetRepo.deleteById(id);
 //    }
 
-    public List<AssetEntity> searchAssets(String title){
+    public List<AssetEntity> searchAssets(String title) {
         return assetRepo.findByTitleLike("%" + title + "%");
 
     }
@@ -101,17 +95,12 @@ public class AssetService {
 
     public void deleteAssetEntityById(int id) {
         // ابتدا موجودیت‌های وابسته را پیدا کن
-        List<Employee_AssetEntity> employeeAssetEntities = employeeAssetRepo.findById(id);
-        for (Employee_AssetEntity asset : employeeAssetEntities) {
-            employeeAssetRepo.delete(asset);
-        }
-
+        AssetEntity assetEntity = assetRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("not found asst"));
+        assetRepo.delete(assetEntity);
         // حالا موجودیت اصلی را حذف کن
-        assetRepo.deleteById(id);
+        //assetRepo.deleteById(id);
     }
-
-
-
 
 
 }
