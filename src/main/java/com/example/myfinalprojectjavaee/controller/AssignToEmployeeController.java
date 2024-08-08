@@ -43,7 +43,8 @@ public class AssignToEmployeeController {
     @PostMapping("/assignAsset")
     public String assignAssetToEmployee(@ModelAttribute Employee_AssetEntity employeeAssetEntity ) {
 
-        employeeAssetService.assignEmployeeToAsset(employeeAssetEntity.getAssetEntity().getId(), Collections.singletonList(employeeAssetEntity.getEmployeeEntity().getId()));
+        employeeAssetService.assignEmployeeToAsset(employeeAssetEntity.getAssetEntity().getId()
+                , Collections.singletonList(employeeAssetEntity.getEmployeeEntity().getId()));
         return "redirect:/assign_asset";
     }
 }

@@ -69,4 +69,15 @@ public class Employee_AssetService {
     public List<Employee_AssetEntity> findEmployeeAssetById(int id) {
         return employeeAssetRepo.findAllById(Collections.singleton(id));
     }
+
+//    public List<Project> getProjectsByEmployeeId(Long employeeId) {
+//        List<EmployeeProject> employeeProjects = employeeProjectRepository.findProjectsByEmployeeId(employeeId);
+//        return employeeProjects.stream()
+//                .map(ep -> ep.getProject()) // فرض که متد getProject() در EmployeeProject تعریف شده باشد
+//                .collect(Collectors.toList());
+//    }
+
+    public List<Employee_AssetEntity> getEmployee_AssetEntitiesByAssetId(int assetId) {
+        return employeeAssetRepo.findEmployee_AssetEntitiesByAssetId(assetId);
+    }
 }
