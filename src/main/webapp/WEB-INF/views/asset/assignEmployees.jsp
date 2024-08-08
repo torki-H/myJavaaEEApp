@@ -46,6 +46,8 @@
         </tbody>
     </table>
         <button type="submit">Assign</button>
+<%--        <a href="<c:url value='/assignedEmployees'/>" class="btn btn-danger">Assign</a>--%>
+
     </form>
 
 </div>

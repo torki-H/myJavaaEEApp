@@ -75,10 +75,24 @@ public class AssetController {
         return "asset/assignEmployees";
     }
     @PostMapping("/assets/{assetId}/assign")
-    public String assignEmployees(@PathVariable("assetId") int assetId, @RequestParam List<Integer> employeeIds) {
+    public String assignEmployees(@PathVariable("assetId") int assetId, @RequestParam List<Integer> employeeIds,Model model) {
         employeeAssetService.assignEmployeeToAsset(assetId, employeeIds);
-        return "redirect:/assets";
+        List<Employee_AssetEntity > employeeAssets = employeeAssetService.getEmployee_AssetEntitiesByAssetId(assetId);
+        model.addAttribute("employeeAssets", employeeAssets);
+        model.addAttribute("assetId", assetId);
+        return "employee_asset/assignedEmployees";
     }
+
+//    @GetMapping("/assignedEmployees")
+//    public String assignedEmployees(@PathVariable("assetId") int assetId, @RequestParam List<Integer> employeeIds,Model model) {
+//        //employeeAssetService.assignEmployeeToAsset(assetId, employeeIds);
+//        //List<Employee_AssetEntity > employeeAssets = employeeAssetService.getEmployee_AssetEntitiesByAssetId(assetId);
+//        //model.addAttribute("employeeAssets", employeeAssets);
+//        model.addAttribute("assetId", assetId);
+//        return "employee_asset/assignedEmployees";
+//    }
+
+
     @GetMapping("/assets/edit/{id}")
     public String editAssetForm(@PathVariable int id, Model model) {
         List<CategoryEntity> categoryEntities = categoryService.getAllCategories();
