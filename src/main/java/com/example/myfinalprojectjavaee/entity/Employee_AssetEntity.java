@@ -24,7 +24,7 @@ public class Employee_AssetEntity {
     private EmployeeEntity employeeEntity;
 
     @ManyToOne
-    @JoinColumn(name = "FK_AssetID",referencedColumnName = "AssetID"/*"CID"*/)//درس و ثبت نام
+    @JoinColumn(name = "FK_AssetID",referencedColumnName = "AssetID",nullable = false)
     private AssetEntity assetEntity;
 
 

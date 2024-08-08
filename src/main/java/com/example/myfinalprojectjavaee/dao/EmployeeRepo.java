@@ -13,5 +13,7 @@ public interface EmployeeRepo extends JpaRepository<EmployeeEntity,Integer> {
 
     List<EmployeeEntity> findByNameLike(String name);
 
+    EmployeeEntity findEmployeeEntityById(int id);
+
 
 }

@@ -22,18 +22,6 @@
         <h1>List Assets</h1>
     </div>
 
-    <div class="row">
-        <div class="col-lg-2">
-            <a href="<c:url value='/assets/new'/>" class="btn btn-primary btn-sm mb-3">Add Asset</a>
-        </div>
-        <div class="col-lg-2">
-            <form style="display: flex; align-items: center;" action="<c:url value='/assetSearch'/>" method="post">
-                <label style="display: inline-block">title:</label>
-                <input class="input-details" type="text" id="title" name="title">
-                <button class="button-details" type="submit">Search</button>
-            </form>
-        </div>
-    </div>
 
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
@@ -42,8 +30,6 @@
             <th>Asset Title</th>
             <th>Asset Description</th>
             <th>Asset Healthy Status</th>
-            <th>Category</th>
-            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -57,12 +43,6 @@
                         <c:when test="${asset.healthyStatus == 'true'}">Healthy</c:when>
                         <c:otherwise>Needs Repair</c:otherwise>
                     </c:choose>
-                </td>
-                <td><c:out value="${asset.categoryEntity.getDescription()}"/></td>
-                <td>
-                    <a href="<c:url value='/assets/edit/${asset.id}'/>" class="btn btn-primary">Update</a>
-                    <a href="<c:url value='/assets/${asset.id}'/>" class="btn btn-danger">Delete</a>
-                    <a href="<c:url value='/assets/${asset.id}/assign'/>" class="btn btn-danger">Assign</a>
                 </td>
             </tr>
         </c:forEach>

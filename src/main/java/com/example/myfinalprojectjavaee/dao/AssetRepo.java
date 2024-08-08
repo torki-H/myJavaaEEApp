@@ -9,4 +9,7 @@ import java.util.List;
 @Repository
 public interface AssetRepo extends JpaRepository<AssetEntity,Integer> {
      List<AssetEntity> findByTitleLike(String title);
+
+     AssetEntity findAssetEntityById(int id);
+
 }

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Collections;
+
 @Controller
 public class AssignToEmployeeController {
 
@@ -41,7 +43,7 @@ public class AssignToEmployeeController {
     @PostMapping("/assignAsset")
     public String assignAssetToEmployee(@ModelAttribute Employee_AssetEntity employeeAssetEntity ) {
 
-        employeeAssetService.assignEmployeeToAsset(employeeAssetEntity.getAssetEntity().getId(), employeeAssetEntity.getEmployeeEntity().getId());
+        employeeAssetService.assignEmployeeToAsset(employeeAssetEntity.getAssetEntity().getId(), Collections.singletonList(employeeAssetEntity.getEmployeeEntity().getId()));
         return "redirect:/assign_asset";
     }
 }
