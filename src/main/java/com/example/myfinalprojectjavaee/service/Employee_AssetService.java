@@ -49,17 +49,50 @@ public class Employee_AssetService {
     @Autowired
     private EmployeeRepo employeeRepo;
 
+//    public void assignEmployeeToAsset(int assetId, List<Integer> employeeIds) {
+//        AssetEntity asset = assetRepo.findById(assetId)
+//                .orElseThrow(() -> new EntityNotFoundException("دارایی با ID " + assetId + " پیدا نشد."));
+//        employeeIds.forEach(employeeId -> {
+//            EmployeeEntity employee = employeeRepo.findById(employeeId)
+//                    .orElseThrow(() -> new EntityNotFoundException("کارمند با ID " + employeeId + " پیدا نشد."));
+//            Employee_AssetEntity assignment = new Employee_AssetEntity();
+//            assignment.setEmployeeEntity(employee);
+//            assignment.setAssetEntity(asset);
+//            employeeAssetRepo.save(assignment);
+//        });
+//    }
+
+
+
+
     public void assignEmployeeToAsset(int assetId, List<Integer> employeeIds) {
-        AssetEntity asset = assetRepo.findById(assetId)
-                .orElseThrow(() -> new EntityNotFoundException("دارایی با ID " + assetId + " پیدا نشد."));
-        employeeIds.forEach(employeeId -> {
-            EmployeeEntity employee = employeeRepo.findById(employeeId)
-                    .orElseThrow(() -> new EntityNotFoundException("کارمند با ID " + employeeId + " پیدا نشد."));
-            Employee_AssetEntity assignment = new Employee_AssetEntity();
-            assignment.setEmployeeEntity(employee);
-            assignment.setAssetEntity(asset);
-            employeeAssetRepo.save(assignment);
-        });
+        List<Employee_AssetEntity> allEmployeeAssets = employeeAssetRepo.findAll();
+        for (int i = 0; i < employeeIds.size(); i++) {
+//            for (Employee_AssetEntity employeeAsst : allEmployeeAssets) {
+//                for (int empId : employeeIds) {
+                    if (employeeIds.contains(allEmployeeAssets.get(i).getEmployeeEntity().getId()) &&
+                            allEmployeeAssets.get(i).getAssetEntity().getId() == assetId)
+                        System.out.println(" this employee assigned");
+                    else {
+                        AssetEntity asset = assetRepo.findById(assetId)
+                                .orElseThrow(() -> new EntityNotFoundException("دارایی با ID " + assetId + " پیدا نشد."));
+                        employeeIds.forEach(employeeId -> {
+                            EmployeeEntity employee = employeeRepo.findById(employeeId)
+                                    .orElseThrow(() -> new EntityNotFoundException("کارمند با ID " + employeeId + " پیدا نشد."));
+                            Employee_AssetEntity assignment = new Employee_AssetEntity();
+                            assignment.setEmployeeEntity(employee);
+                            assignment.setAssetEntity(asset);
+                            employeeAssetRepo.save(assignment);
+                        });
+
+
+                    }
+                }
+
+           // }
+
+       // }
+
     }
 
     public List<Employee_AssetEntity> findAll() {
