@@ -54,34 +54,7 @@ public class EmployeeService {
         return employeeRepo.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
-//    public Optional<EmployeeEntity> getOne(int id){
-//        return employeeRepo.findById(id);
-//    }
 
-
-
-
-
-
-
-
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
     public List<EmployeeEntity> getAllEmployeeEntitys() {
         return employeeRepo.findAll();

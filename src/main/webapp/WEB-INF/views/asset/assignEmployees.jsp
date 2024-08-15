@@ -21,7 +21,12 @@
 
 <div class="container">
 
+    <c:if test="${not empty message}">
+        <div style="color: red;">${message}</div>
+    </c:if>
+
     <form action="${pageContext.request.contextPath}/assets/${assetId}/assign" method="post">
+        <br>
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
         <tr>
@@ -45,12 +50,20 @@
         </c:forEach>
         </tbody>
     </table>
-        <button type="submit">Assign</button>
-<%--        <a href="<c:url value='/assignedEmployees'/>" class="btn btn-danger">Assign</a>--%>
-
+        <button type="submit" class="btn btn-primary" onclick="return validateSelection();">Assign</button>
     </form>
-
 </div>
+<script>
+    function validateSelection() {
+        const checkboxes = document.querySelectorAll('input[name="employeeIds"]:checked');
+        if (checkboxes.length === 0) {
+            alert("You must make at least one selection");
+            return false;
+        }
+        return true;
+    }
+</script>
+
 </body>
 </html>
 
@@ -58,47 +71,3 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
-<%--<html>--%>
-<%--<head>--%>
-<%--    <title>Assign Employees</title>--%>
-<%--</head>--%>
-<%--<body>--%>
-<%--<h1>Assign Employees to Asset</h1>--%>
-<%--<form action="${pageContext.request.contextPath}/assets/${assetId}/assign" method="post">--%>
-<%--    <table>--%>
-<%--        <thead>--%>
-<%--        <tr>--%>
-<%--            <th>Select</th>--%>
-<%--            <th>Name</th>--%>
-<%--        </tr>--%>
-<%--        </thead>--%>
-<%--        <tbody>--%>
-<%--        <c:forEach var="employee" items="${employees}">--%>
-<%--            <tr>--%>
-<%--                <td><input type="checkbox" name="employeeIds" value="${employee.id}"/></td>--%>
-<%--                <td>${employee.name}</td>--%>
-<%--            </tr>--%>
-<%--        </c:forEach>--%>
-<%--        </tbody>--%>
-<%--    </table>--%>
-<%--    <button type="submit">Assign</button>--%>
-<%--</form>--%>
-<%--</body>--%>
-<%--</html>--%>

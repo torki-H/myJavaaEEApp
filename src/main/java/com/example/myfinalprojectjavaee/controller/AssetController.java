@@ -70,7 +70,9 @@ public class AssetController {
     @GetMapping("/assets/{assetId}/assign")
     public String showEmployees(@PathVariable("assetId") int assetId, Model model) {
         List<EmployeeEntity> employees = employeeService.getAllEmployees();
+     //   List<Employee_AssetEntity> employeeAssetEntities = employeeAssetService.findAll();
         model.addAttribute("employees", employees);
+     //   model.addAttribute("employeeAssetEntities", employeeAssetEntities);
         model.addAttribute("assetId", assetId);
         return "asset/assignEmployees";
     }
@@ -83,14 +85,6 @@ public class AssetController {
         return "employee_asset/assignedEmployees";
     }
 
-//    @GetMapping("/assignedEmployees")
-//    public String assignedEmployees(@PathVariable("assetId") int assetId, @RequestParam List<Integer> employeeIds,Model model) {
-//        //employeeAssetService.assignEmployeeToAsset(assetId, employeeIds);
-//        //List<Employee_AssetEntity > employeeAssets = employeeAssetService.getEmployee_AssetEntitiesByAssetId(assetId);
-//        //model.addAttribute("employeeAssets", employeeAssets);
-//        model.addAttribute("assetId", assetId);
-//        return "employee_asset/assignedEmployees";
-//    }
 
 
     @GetMapping("/assets/edit/{id}")
@@ -107,11 +101,6 @@ public class AssetController {
         return "redirect:/assets";
     }
 
-//    @DeleteMapping("/assets/{id}")
-//    public String deleteAsset(@PathVariable int id) {
-//        assetService.deleteAssetEntityById(id);
-//        return "redirect:/assets";
-//    }
     @PostMapping("/assets/{id}")
     public String updateStudent(@PathVariable int id,
                                 @ModelAttribute("asset") AssetEntity assetEntity){
