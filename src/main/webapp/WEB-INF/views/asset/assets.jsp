@@ -63,7 +63,7 @@
                     <a href="<c:url value='/assets/edit/${asset.id}'/>" class="btn btn-primary">Update</a>
                     <a href="<c:url value='/assets/${asset.id}'/>" class="btn btn-danger">Delete</a>
                     <a href="<c:url value='/assets/${asset.id}/assign'/>" class="btn btn-primary">Assign</a>
-                    <a href="<c:url value='/assets/${asset.id}'/>" class="btn btn-danger">UnAssign</a>
+                    <a href="<c:url value='/assets/${asset.id}/unAssign'/>" class="btn btn-danger">UnAssign</a>
 
                 </td>
             </tr>
