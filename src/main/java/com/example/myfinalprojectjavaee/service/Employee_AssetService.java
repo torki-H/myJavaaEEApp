@@ -94,6 +94,15 @@ public class Employee_AssetService {
         }
     }
 
+    public void unAssignEmployeeFromAsset(int assetId, List<Integer> employeeIds) {
+        for (int employeeId : employeeIds) {
+
+            List<Employee_AssetEntity> employeeAssetEntities = employeeAssetRepo.findEmployee_AssetEntitiesByEmployeeIdAndAssetId(assetId, employeeId);
+            if (!employeeAssetEntities.isEmpty()) {
+                employeeAssetRepo.deleteAll(employeeAssetEntities);
+            }
+        }
+    }
 
 
 
