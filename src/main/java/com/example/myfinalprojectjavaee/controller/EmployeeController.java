@@ -59,8 +59,6 @@ public class EmployeeController {
     @PostMapping("/employees/{id}")
     public String updateStudent(@PathVariable int id,
                                 @ModelAttribute("employee") EmployeeEntity EmployeeEntity) {
-        //      Model model) {
-
         EmployeeEntity existingemployee = EmployeeService.getEmployeeEntityById(id);
         existingemployee.setId(id);
         existingemployee.setEmployedDate(EmployeeEntity.getEmployedDate());
@@ -104,6 +102,15 @@ public class EmployeeController {
         assetAllocation.setAssetEntity(asset);
         employeeAssetService.assignEmployeeToAsset(assetId, List.of(employeeId));
         return "redirect:/assets";
+    }
+
+    @GetMapping("/employees/{employeeId}/assignedAssets")
+    public String showAssetsOfEmployee(@PathVariable("employeeId") int employeeId,Model model){
+
+        List<Employee_AssetEntity > employeeAssets = employeeAssetService.getEmployee_AssetEntitiesByEmployeeId(employeeId);
+        model.addAttribute("employeeAssets", employeeAssets);
+        model.addAttribute("employeeId", employeeId);
+        return "employee_asset/assetsOfEmployee";
     }
 
 }
