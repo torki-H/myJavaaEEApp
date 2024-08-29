@@ -21,6 +21,8 @@ public interface Employee_AssetRepo extends JpaRepository<Employee_AssetEntity,I
     @Query("SELECT ea FROM employee_asset ea WHERE ea.assetEntity.id = :assetId")
     List<Employee_AssetEntity> findEmployee_AssetEntitiesByAssetId(@Param("assetId") int assetId);
 
+    @Query("SELECT ea FROM employee_asset ea WHERE ea.employeeEntity.Id = :employeeId")
+    List<Employee_AssetEntity> findEmployee_AssetEntitiesByEmployeeId(@Param("employeeId") int employeeId);
     @Query("SELECT ea FROM employee_asset ea WHERE ea.assetEntity.id = :assetId and ea.employeeEntity.Id in :employeeId")
     List<Employee_AssetEntity> findEmployee_AssetEntitiesByEmployeeIdAndAssetId(@Param("assetId") int assetId,@Param("employeeId") int employeeId);
 }

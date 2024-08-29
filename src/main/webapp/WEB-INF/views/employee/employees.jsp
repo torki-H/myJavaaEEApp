@@ -20,7 +20,7 @@
 
 <div class="container">
     <div class="row">
-        <h1>List Employees</h1>
+        <h1>List of Employees</h1>
     </div>
 
     <div class="row">
@@ -57,6 +57,7 @@
                 <td>
                     <a href="<c:url value='/employees/edit/${employee.id}'/>" class="btn btn-primary">Update</a>
                     <a href="<c:url value='/employees/${employee.id}'/>" class="btn btn-danger">Delete</a>
+                    <a href="<c:url value='/employees/${employee.id}/assignedAssets'/>" class="btn btn-primary">assignedAssets</a>
                 </td>
             </tr>
         </c:forEach>
