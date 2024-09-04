@@ -30,7 +30,7 @@ public class EmployeeEntity// extends JpaEntity
     //@StringTimeFormat(pattern = "yyyyMMdd")
     private String employedDate;
 
-    @OneToMany(targetEntity = Employee_AssetEntity.class/*,fetch = FetchType.LAZY*/ ,cascade = CascadeType.REMOVE )
+    @OneToMany(targetEntity = Employee_AssetEntity.class/*,fetch = FetchType.LAZY*/ ,cascade = CascadeType.ALL )
     @JoinColumn(name = "FK_EmpID",referencedColumnName = "EmpID")
     private List<Employee_AssetEntity> employeeAssetEntityList;
 

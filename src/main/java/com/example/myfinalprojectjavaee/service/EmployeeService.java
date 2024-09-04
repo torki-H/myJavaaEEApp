@@ -65,7 +65,6 @@ public class EmployeeService {
     }
 
     public EmployeeEntity getEmployeeEntityById(int id) {
-        //return employeeRepo.findById(id).get();
         return employeeRepo.findEmployeeEntityById(id);
     }
 

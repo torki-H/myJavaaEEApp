@@ -34,4 +34,18 @@ public class CategoryService {
     public List<CategoryEntity> getAllCategories() {
         return categoryRepo.findAll();
     }
+
+    public CategoryEntity getCategoryEntityById(int id) {
+        return categoryRepo.findCategoryEntityById(id);
+    }
+
+
+    public CategoryEntity updateEmployeeEntity(CategoryEntity categoryEntity) {
+        return categoryRepo.save(categoryEntity);
+    }
+
+    public void deleteCategoryEntityById(int id) {
+        categoryRepo.deleteById(id);
+    }
+
 }
