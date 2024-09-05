@@ -65,6 +65,11 @@
                     <a href="<c:url value='/assets/${asset.id}/assign'/>" class="btn btn-primary">Assign</a>
                     <a href="<c:url value='/assets/${asset.id}/unAssign'/>" class="btn btn-danger">UnAssign</a>
 
+                    <c:choose>
+                        <c:when test="${asset.healthyStatus == 'false'}">
+                            <a href="<c:url value='/assets/${asset.id}/aboard'/>" class="btn btn-primary">aboard</a>
+                        </c:when>
+                    </c:choose>
                 </td>
             </tr>
         </c:forEach>

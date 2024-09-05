@@ -24,6 +24,8 @@ public class AssetEntity
     @Column
     private Boolean healthyStatus;
     @Column
+    private Boolean aboard=false;
+    @Column
     private String description;
 
         @OneToMany(targetEntity = Employee_AssetEntity.class/*, fetch = FetchType.LAZY*/, cascade = CascadeType.ALL)

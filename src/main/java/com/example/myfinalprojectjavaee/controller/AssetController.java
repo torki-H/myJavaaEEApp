@@ -14,7 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 public class AssetController {
@@ -35,13 +35,25 @@ public class AssetController {
 
     @GetMapping("/assets")
     public String listAssets(Model model) {
-        model.addAttribute("assets", assetService.getAllAssetEntitys());
+        List<AssetEntity> allAssets = assetService.getAllAssetEntitys();
+        List<AssetEntity> filteredAssets = allAssets.stream()
+                .filter(asset -> !asset.getAboard())
+                .collect(Collectors.toList());
+        model.addAttribute("assets", filteredAssets);
         return "asset/assets";
+    }
 
+    @GetMapping("/assets/{assetId}/aboard")
+    public String aboardAsset(@PathVariable int assetId, Model model) {
+        AssetEntity assetEntityById = assetService.getAssetEntityById(assetId);
+        assetEntityById.setAboard(true);
+        assetService.updateAssetEntity(assetEntityById);
+        return "redirect:/assets";
     }
 
     @PostMapping("/assets")
     public String saveAsset(@ModelAttribute("asset") AssetEntity assetEntity) {
+        assetEntity.setAboard(false);
         assetService.saveAssetEntity(assetEntity);
         return "redirect:/assets";
 

@@ -64,6 +64,8 @@
                         </select>
                     </div>
 
+                    <input type="hidden" name="aboard" value="false" />
+
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">
                             Submit
