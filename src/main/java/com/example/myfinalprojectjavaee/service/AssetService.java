@@ -33,7 +33,6 @@ public class AssetService {
     }
 
     public AssetEntity getAssetEntityById(int id) {
-        //return assetRepo.findById(id).get();
         return assetRepo.findAssetEntityById(id);
     }
 
@@ -50,19 +49,14 @@ public class AssetService {
 
 
     public void deleteAssetEntityById(int id) {
-        // ابتدا موجودیت‌های وابسته را پیدا کن
-   //     AssetEntity assetEntity = assetRepo.findById(id)
-   //             .orElseThrow(() -> new RuntimeException("not found asst"));
-     //   assetRepo.delete(assetEntity);
-        // حالا موجودیت اصلی را حذف کن
-        //assetRepo.deleteById(id);
+        AssetEntity assetEntity = assetRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("not found asst"));
+
         List<Employee_AssetEntity> employeeAssetEntities = employeeAssetRepo.findEmployee_AssetEntitiesByAssetId(id);
-               // .orElseThrow(() -> new RuntimeException("not found asst"));
         for (Employee_AssetEntity employeeAssetEntity:employeeAssetEntities) {
             employeeAssetRepo.delete(employeeAssetEntity);
-
         }
-
+        assetRepo.deleteById(id);
 
     }
 
