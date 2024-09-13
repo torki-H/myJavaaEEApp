@@ -27,5 +27,10 @@ public class Employee_AssetEntity {
     @JoinColumn(name = "FK_AssetID",referencedColumnName = "AssetID",nullable = false)
     private AssetEntity assetEntity;
 
+    @Column
+    private int version;
+
+    @Column
+    private Boolean assignStatus;
 
 }

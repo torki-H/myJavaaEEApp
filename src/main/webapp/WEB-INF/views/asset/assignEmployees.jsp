@@ -13,10 +13,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <!-- Brand -->
     <a class="navbar-brand" href="#">Employee Management System</a>
-
-
 </nav>
 
 <div class="container">
@@ -27,29 +24,29 @@
 
     <form action="${pageContext.request.contextPath}/assets/${assetId}/assign" method="post">
         <br>
-    <table class="table table-striped table-bordered">
-        <thead class="table-dark">
-        <tr>
-            <th>Employee Id</th>
-            <th>Employee Name</th>
-            <th>Employee Family</th>
-            <th>Employee Date</th>
-            <th>Select</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <c:forEach var="employee" items="${employees}">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
             <tr>
-                <td><c:out value="${employee.id}"/></td>
-                <td><c:out value="${employee.name}"/></td>
-                <td><c:out value="${employee.family}"/></td>
-                <td><c:out value="${employee.employedDate}"/></td>
-                <td><input type="checkbox" name="employeeIds" value="${employee.id}"/></td>
+                <th>Employee Id</th>
+                <th>Employee Name</th>
+                <th>Employee Family</th>
+                <th>Employee Date</th>
+                <th>Select</th>
             </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+            </thead>
+
+            <tbody>
+            <c:forEach var="employee" items="${employees}">
+                <tr>
+                    <td><c:out value="${employee.id}"/></td>
+                    <td><c:out value="${employee.name}"/></td>
+                    <td><c:out value="${employee.family}"/></td>
+                    <td><c:out value="${employee.employedDate}"/></td>
+                    <td><input type="checkbox" name="employeeIds" value="${employee.id}"/></td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
         <button type="submit" class="btn btn-primary" onclick="return validateSelection();">Assign</button>
     </form>
 </div>
@@ -66,8 +63,3 @@
 
 </body>
 </html>
-
-
-
-
-

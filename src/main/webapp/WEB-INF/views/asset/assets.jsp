@@ -64,6 +64,7 @@
                     <a href="<c:url value='/assets/${asset.id}'/>" class="btn btn-danger">Delete</a>
                     <a href="<c:url value='/assets/${asset.id}/assign'/>" class="btn btn-primary">Assign</a>
                     <a href="<c:url value='/assets/${asset.id}/unAssign'/>" class="btn btn-danger">UnAssign</a>
+                    <a href="<c:url value='/assets/${asset.id}/historyOfAssigned'/>" class="btn btn-primary">history</a>
 
                     <c:choose>
                         <c:when test="${asset.healthyStatus == 'false'}">

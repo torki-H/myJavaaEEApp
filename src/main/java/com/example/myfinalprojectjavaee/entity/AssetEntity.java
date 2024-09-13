@@ -43,11 +43,19 @@ public class AssetEntity
         this.description = description;
     }
 
-    public AssetEntity(int id, String title, Boolean healthyStatus, String description) {
+    public AssetEntity(int id) {
         this.id = id;
         this.title = title;
         this.healthyStatus = healthyStatus;
         this.description = description;
     }
+
+        public AssetEntity(int id, String title, Boolean healthyStatus, String description) {
+            this.id = id;
+            this.title = title;
+            this.healthyStatus = healthyStatus;
+            this.description = description;
+        }
+
 
 }

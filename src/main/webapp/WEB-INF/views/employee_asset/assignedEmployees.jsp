@@ -25,6 +25,8 @@
                 <th>employeeAsset Id</th>
                 <th>employee fullName</th>
                 <th>AssetTitle</th>
+                <th>assignStatus</th>
+                <th>order of assign</th>
             </tr>
             </thead>
 
@@ -34,6 +36,18 @@
                     <td><c:out value="${employeeAsset.id}"/></td>
                     <td><c:out value="${employeeAsset.employeeEntity.name} ${employeeAsset.employeeEntity.family}"/></td>
                     <td><c:out value="${employeeAsset.assetEntity.title}"/></td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${employeeAsset.assignStatus}">
+                                Assigned
+                            </c:when>
+                            <c:otherwise>
+                                Unassigned
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                    <td><c:out value="${employeeAsset.version}"/></td>
+
                 </tr>
             </c:forEach>
             </tbody>
