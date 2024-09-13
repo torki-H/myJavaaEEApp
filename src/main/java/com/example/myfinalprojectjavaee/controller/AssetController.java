@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -87,9 +88,16 @@ public class AssetController {
         return "asset/assignEmployees";
     }
     @PostMapping("/assets/{assetId}/assign")
-    public String assignEmployees(@PathVariable("assetId") int assetId, @RequestParam List<Integer> employeeIds,Model model) {
+    public String assignEmployees(@PathVariable("assetId") int assetId, @RequestParam List<Integer> employeeIds) {
         employeeAssetService.assignEmployeeToAsset(assetId, employeeIds);
+         employeeAssetService.getEmployee_AssetEntitiesByAssetId(assetId);
+        return "redirect:/assets";
+    }
+
+    @GetMapping("/assets/{assetId}/historyOfAssigned")
+    public String history(@PathVariable("assetId") int assetId,Model model) {
         List<Employee_AssetEntity > employeeAssets = employeeAssetService.getEmployee_AssetEntitiesByAssetId(assetId);
+        employeeAssets.sort(Comparator.comparing(Employee_AssetEntity::getVersion));
         model.addAttribute("employeeAssets", employeeAssets);
         model.addAttribute("assetId", assetId);
         return "employee_asset/assignedEmployees";
@@ -105,12 +113,9 @@ public class AssetController {
     }
 
     @PostMapping("/assets/{assetId}/unAssign")
-    public String unAssignEmployees(@PathVariable("assetId") int assetId, @RequestParam List<Integer> employeeIds,Model model) {
+    public String unAssignEmployees(@PathVariable("assetId") int assetId, @RequestParam List<Integer> employeeIds) {
         employeeAssetService.unAssignEmployeeFromAsset(assetId, employeeIds);
-        List<Employee_AssetEntity > employeeAssets = employeeAssetService.getEmployee_AssetEntitiesByAssetId(assetId);
-        model.addAttribute("employeeAssets", employeeAssets);
-        model.addAttribute("assetId", assetId);
-        return "employee_asset/assignedEmployees";
+        return "redirect:/assets";
     }
 
     @GetMapping("/assets/edit/{id}")

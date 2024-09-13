@@ -41,6 +41,9 @@ public class EmployeeEntity// extends JpaEntity
         this.employedDate = employedDate;
     }
 
+       public EmployeeEntity(int id) {
+           Id = id;
+       }
     public EmployeeEntity(int id, String name, String family, String employedDate) {
         Id = id;
         this.name = name;
