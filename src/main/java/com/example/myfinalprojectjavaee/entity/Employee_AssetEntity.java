@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.Date;
+
 @Entity(name = "employee_asset")
 @Table(name = "employeeassetjavaeefinal")
 @Data
@@ -33,4 +35,9 @@ public class Employee_AssetEntity {
     @Column
     private Boolean assignStatus;
 
+    @Column
+    private Date assignedDate;
+
+    @Column
+    private Date unassignedDate;
 }

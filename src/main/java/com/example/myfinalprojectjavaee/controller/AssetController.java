@@ -82,7 +82,8 @@ public class AssetController {
 
     @GetMapping("/assets/{assetId}/assign")
     public String showEmployees(@PathVariable("assetId") int assetId, Model model) {
-        List<EmployeeEntity> employees = employeeService.getAllEmployees();
+        //List<EmployeeEntity> employees = employeeService.getAllEmployees();
+        List<EmployeeEntity> employees = employeeService.findAvailableEmployeesForAsset(assetId);
         model.addAttribute("employees", employees);
         model.addAttribute("assetId", assetId);
         return "asset/assignEmployees";
@@ -106,7 +107,8 @@ public class AssetController {
 
     @GetMapping("/assets/{assetId}/unAssign")
     public String showEmployeeAssets(@PathVariable("assetId") int assetId, Model model) {
-        List<Employee_AssetEntity> employeeAssetEntities = employeeAssetService.findAll();
+    //    List<Employee_AssetEntity> employeeAssetEntities = employeeAssetService.findAll();
+        List<Employee_AssetEntity> employeeAssetEntities = employeeAssetService.findAvailableEmployeesForUnAssign(assetId);
         model.addAttribute("employeeAssets", employeeAssetEntities);
         model.addAttribute("assetId", assetId);
         return "employee_asset/unAssignEmployees";

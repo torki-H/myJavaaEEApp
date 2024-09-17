@@ -26,6 +26,8 @@
                 <th>employee fullName</th>
                 <th>AssetTitle</th>
                 <th>assignStatus</th>
+                <th>assignedDate</th>
+                <th>unassignedDate</th>
                 <th>order of assign</th>
             </tr>
             </thead>
@@ -46,6 +48,9 @@
                             </c:otherwise>
                         </c:choose>
                     </td>
+                    <td><c:out value="${employeeAsset.assignedDate}"/></td>
+                    <td><c:out value="${employeeAsset.unassignedDate}"/></td>
+
                     <td><c:out value="${employeeAsset.version}"/></td>
 
                 </tr>
