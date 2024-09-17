@@ -134,7 +134,7 @@ public class AssetController {
         return "redirect:/assets";
     }
 
-    @PostMapping("/assets/{id}")
+    @PostMapping("/assets/{id}/update")
     public String updateStudent(@PathVariable int id,
                                 @ModelAttribute("asset") AssetEntity assetEntity){
                              //   Model model) {
@@ -147,7 +147,14 @@ public class AssetController {
         CategoryEntity category = categoryService.getCategoryById(assetEntity.getCategoryEntity().getId());
         existingAsset.setCategoryEntity(category);
         existingAsset.setEmployeeAssetEntityList(assetEntity.getEmployeeAssetEntityList());
-        assetService.updateAssetEntity(existingAsset);
+        AssetEntity updatedAssetEntity = assetService.updateAssetEntity(existingAsset);
+        List<Employee_AssetEntity> employeeAssetEntities = employeeAssetService.getEmployee_AssetEntitiesByAssetId(id);
+
+        for (Employee_AssetEntity employeeAssetEntity:employeeAssetEntities) {
+            employeeAssetEntity.setAssetEntity(updatedAssetEntity);
+            employeeAssetService.updateEmployee_AssetEntity(employeeAssetEntity);
+
+        }
         return "redirect:/assets";
     }
 

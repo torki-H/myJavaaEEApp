@@ -97,4 +97,8 @@ public class Employee_AssetService {
     public List<Employee_AssetEntity> findAvailableEmployeesForUnAssign(int assetId){
         return employeeAssetRepo.availableEmployeesForUnAssign(assetId);
     }
+
+    public Employee_AssetEntity updateEmployee_AssetEntity(Employee_AssetEntity employeeAssetEntity) {
+        return employeeAssetRepo.save(employeeAssetEntity);
+    }
 }
