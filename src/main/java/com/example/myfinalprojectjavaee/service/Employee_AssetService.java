@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 
@@ -41,6 +42,7 @@ public class Employee_AssetService {
             newAssignment.setAssetEntity(new AssetEntity(assetId)); // تنظیم دارایی
             newAssignment.setVersion(currentVersion + 1); // افزایش نسخه با توجه به آخرین تخصیص
             newAssignment.setAssignStatus(true); // وضعیت را به assigned تغییر دهید
+            newAssignment.setAssignedDate(new Date()); // تاریخ انتساب را به تاریخ و ساعت فعلی تنظیم کنید
 
             // ذخیره رکورد جدید
             employeeAssetRepo.save(newAssignment);
@@ -63,7 +65,7 @@ public class Employee_AssetService {
                     newUnassignment.setAssetEntity(lastAssignment.getAssetEntity()); // تنظیم دارایی
                     newUnassignment.setVersion(lastAssignment.getVersion() + 1); // افزایش نسخه
                     newUnassignment.setAssignStatus(false); // تغییر وضعیت به unassigned
-
+                    newUnassignment.setUnassignedDate(new Date()); // تاریخ لغو را به تاریخ و ساعت فعلی تنظیم کنید
                     // ذخیره رکورد جدید
                     employeeAssetRepo.save(newUnassignment);
                     System.out.println("تخصیص کارمند با ID " + employeeId + " از دارایی با ID " + assetId + " لغو شد. (نسخه: " + newUnassignment.getVersion() + ")");
@@ -90,5 +92,9 @@ public class Employee_AssetService {
 
     public List<Employee_AssetEntity> getEmployee_AssetEntitiesByEmployeeId(int employeeId) {
         return employeeAssetRepo.findEmployee_AssetEntitiesByEmployeeId(employeeId);
+    }
+
+    public List<Employee_AssetEntity> findAvailableEmployeesForUnAssign(int assetId){
+        return employeeAssetRepo.availableEmployeesForUnAssign(assetId);
     }
 }
