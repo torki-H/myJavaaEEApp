@@ -25,7 +25,7 @@
             <h1 class="text-center">Update Asset</h1>
 
             <div class="card-body">
-                <form action="<c:url value='/assets/${asset.id}'/>" method="POST">
+                <form action="<c:url value='/assets/${asset.id}/update'/>" method="POST">
                     <input type="hidden" name="_method" value="PUT" />
                     <div class="form-group">
                         <label>Asset Title</label>
