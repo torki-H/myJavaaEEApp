@@ -43,8 +43,11 @@
                         <input type="text" name="employedDate" class="form-control" placeholder="Enter employee date" required/>
                     </div>
 
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="box-footer d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary">
+                            Submit
+                        </button>
+                        <a href="<c:url value='/employees'/>" class="btn btn-primary">Back</a>
                     </div>
                 </form>
             </div>

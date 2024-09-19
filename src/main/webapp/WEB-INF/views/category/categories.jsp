@@ -13,8 +13,9 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <!-- Brand -->
-    <a class="navbar-brand" href="#">Category Management System</a>
+    <a class="navbar-brand" href="/assets">Asset Management</a>
+    <a class="navbar-brand" href="employees">Employee Management</a>
+    <a class="navbar-brand" href="categories">Category Management</a>
 
 </nav>
 

@@ -19,7 +19,7 @@
 
 <div class="container">
     <div class="row">
-        <h1>List Assets</h1>
+        <h1>List Of Assets</h1>
     </div>
 
 
@@ -48,6 +48,7 @@
         </c:forEach>
         </tbody>
     </table>
+    <a href="<c:url value='/assets'/>" class="btn btn-primary">Back</a>
 </div>
 </body>
 </html>

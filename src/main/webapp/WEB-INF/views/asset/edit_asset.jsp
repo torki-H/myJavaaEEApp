@@ -74,10 +74,11 @@
                         </select>
                     </div>
 
-                    <div class="box-footer">
+                    <div class="box-footer d-flex justify-content-between">
                         <button type="submit" class="btn btn-primary">
                             Submit
                         </button>
+                        <a href="<c:url value='/assets'/>" class="btn btn-primary">Back</a>
                     </div>
                 </form>
             </div>

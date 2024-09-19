@@ -49,7 +49,12 @@
         </c:forEach>
         </tbody>
     </table>
-        <button type="submit" class="btn btn-primary" onclick="return validateSelection();">unAssign</button>
+        <div class="box-footer d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary" onclick="return validateSelection();">
+                unAssign
+            </button>
+            <a href="<c:url value='/assets'/>" class="btn btn-primary">Back</a>
+        </div>
     </form>
 </div>
 <script>

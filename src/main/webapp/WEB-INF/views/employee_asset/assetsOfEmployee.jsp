@@ -43,12 +43,13 @@
                 <td><c:out value="${employeeAsset.assetEntity.title}"/></td>
                 <td><c:out value="${employeeAsset.assetEntity.healthyStatus}"/></td>
                 <td><c:out value="${employeeAsset.assetEntity.description}"/></td>
-
-
             </tr>
         </c:forEach>
         </tbody>
     </table>
+
+    <a href="<c:url value='/employees'/>" class="btn btn-primary"> back </a>
+
 </div>
 
 </body>

@@ -30,6 +30,7 @@
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="<c:url value='/categories'/>" class="btn btn-primary"> back </a>
                     </div>
                 </form>
             </div>
