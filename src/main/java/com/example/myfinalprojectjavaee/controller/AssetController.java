@@ -137,24 +137,14 @@ public class AssetController {
     @PostMapping("/assets/{id}/update")
     public String updateStudent(@PathVariable int id,
                                 @ModelAttribute("asset") AssetEntity assetEntity){
-                             //   Model model) {
 
         AssetEntity existingAsset = assetService.getAssetEntityById(id);
-        existingAsset.setId(id);
         existingAsset.setTitle(assetEntity.getTitle());
         existingAsset.setDescription(assetEntity.getDescription());
         existingAsset.setHealthyStatus(assetEntity.getHealthyStatus());
         CategoryEntity category = categoryService.getCategoryById(assetEntity.getCategoryEntity().getId());
         existingAsset.setCategoryEntity(category);
-        existingAsset.setEmployeeAssetEntityList(assetEntity.getEmployeeAssetEntityList());
         AssetEntity updatedAssetEntity = assetService.updateAssetEntity(existingAsset);
-        List<Employee_AssetEntity> employeeAssetEntities = employeeAssetService.getEmployee_AssetEntitiesByAssetId(id);
-
-        for (Employee_AssetEntity employeeAssetEntity:employeeAssetEntities) {
-            employeeAssetEntity.setAssetEntity(updatedAssetEntity);
-            employeeAssetService.updateEmployee_AssetEntity(employeeAssetEntity);
-
-        }
         return "redirect:/assets";
     }
 

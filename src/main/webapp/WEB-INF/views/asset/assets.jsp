@@ -13,7 +13,9 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <a class="navbar-brand" href="#">Asset Management System</a>
+    <a class="navbar-brand" href="/assets">Asset Management</a>
+    <a class="navbar-brand" href="employees">Employee Management</a>
+    <a class="navbar-brand" href="categories">Category Management</a>
 
 </nav>
 

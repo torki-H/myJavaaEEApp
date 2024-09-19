@@ -12,7 +12,6 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <a class="navbar-brand" href="#">Employee Management System</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -21,23 +20,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/employees">Employee Management</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/teachers">Teacher Management</a>
-            </li>
         </ul>
     </div>
 </nav>
 
 <div class="container">
     <div class="row">
-        <h1> List employees </h1>
+        <h1> List Of Employees </h1>
     </div>
 
-    <div class="row">
-        <div class="col-lg-3">
-            <a href="${pageContext.request.contextPath}/employees" class="btn btn-primary btn-sm mb-3">Back</a>
-        </div>
-    </div>
 
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
@@ -67,6 +58,8 @@
         </c:forEach>
         </tbody>
     </table>
+    <a href="<c:url value='/employees'/>" class="btn btn-primary">Back</a>
+
 </div>
 </body>
 </html>
