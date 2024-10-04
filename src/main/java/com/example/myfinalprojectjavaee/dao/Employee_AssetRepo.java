@@ -15,9 +15,6 @@ public interface Employee_AssetRepo extends JpaRepository<Employee_AssetEntity,I
 
     List<Employee_AssetEntity> findById(int id);
 
-//    @Query("SELECT ep FROM EmployeeProject ep WHERE ep.id.employeeId = :employeeId")
-//    List<EmployeeProject> findProjectsByEmployeeId(@Param("employeeId") Long employeeId);
-
     @Query("SELECT ea FROM employee_asset ea WHERE ea.assetEntity.id = :assetId")
     List<Employee_AssetEntity> findEmployee_AssetEntitiesByAssetId(@Param("assetId") int assetId);
 

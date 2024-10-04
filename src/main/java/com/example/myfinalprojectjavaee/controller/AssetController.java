@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,7 +39,7 @@ public class AssetController {
     public String listAssets(Model model) {
         List<AssetEntity> allAssets = assetService.getAllAssetEntitys();
         List<AssetEntity> filteredAssets = allAssets.stream()
-                .filter(asset -> !asset.getAboard())
+              //  .filter(asset -> !asset.getAboard())
                 .collect(Collectors.toList());
         model.addAttribute("assets", filteredAssets);
         return "asset/assets";
@@ -48,6 +49,7 @@ public class AssetController {
     public String aboardAsset(@PathVariable int assetId, Model model) {
         AssetEntity assetEntityById = assetService.getAssetEntityById(assetId);
         assetEntityById.setAboard(true);
+        assetEntityById.setAboardDate(new Date());
         assetService.updateAssetEntity(assetEntityById);
         return "redirect:/assets";
     }

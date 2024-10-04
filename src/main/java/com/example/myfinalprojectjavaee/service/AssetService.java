@@ -16,10 +16,9 @@ public class AssetService {
     @Autowired
     private AssetRepo assetRepo;
 
+//    @Autowired
+//    private EmployeeRepo employeeRepo;
     @Autowired
-    private EmployeeRepo employeeRepo;
-    @Autowired
-    //private EmployeeAssetEntityRepository employeeAssetEntityRepository;
     private Employee_AssetRepo employeeAssetRepo;
 
 
@@ -49,8 +48,8 @@ public class AssetService {
 
 
     public void deleteAssetEntityById(int id) {
-        AssetEntity assetEntity = assetRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("not found asst"));
+        /*AssetEntity assetEntity = assetRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("not found asst"));*/
 
         List<Employee_AssetEntity> employeeAssetEntities = employeeAssetRepo.findEmployee_AssetEntitiesByAssetId(id);
         for (Employee_AssetEntity employeeAssetEntity:employeeAssetEntities) {

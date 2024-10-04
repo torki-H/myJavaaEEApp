@@ -34,20 +34,12 @@ public class EmployeeEntity// extends JpaEntity
     @JoinColumn(name = "FK_EmpID",referencedColumnName = "EmpID")
     private List<Employee_AssetEntity> employeeAssetEntityList;
 
-    public EmployeeEntity(String name, String family, String employedDate
-    ) {
-        this.name = name;
-        this.family = family;
-        this.employedDate = employedDate;
-    }
+//    @OneToOne(cascade = CascadeType.ALL) // مشخص کردن ارتباط به عنوان مالک
+//    @JoinColumn(name = "FK_UsrID")
+//    private UserEntity user;
+
 
        public EmployeeEntity(int id) {
            Id = id;
        }
-    public EmployeeEntity(int id, String name, String family, String employedDate) {
-        Id = id;
-        this.name = name;
-        this.family = family;
-        this.employedDate = employedDate;
-    }
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity(name = "asset")
@@ -28,6 +29,9 @@ public class AssetEntity
     @Column
     private String description;
 
+    @Column
+    private Date aboardDate;
+
         @OneToMany(targetEntity = Employee_AssetEntity.class/*, fetch = FetchType.LAZY*/, cascade = CascadeType.ALL)
         @JoinColumn(name = "FK_AssetID",referencedColumnName = "AssetID")
     private List<Employee_AssetEntity> employeeAssetEntityList;
@@ -37,25 +41,13 @@ public class AssetEntity
     @JoinColumn(name = "FK_CategoriID",referencedColumnName = "CategoriID")
     private CategoryEntity categoryEntity;
 
-    public AssetEntity(String title, Boolean healthyStatus ,String description) {
-        this.title = title;
-        this.healthyStatus = healthyStatus;
-        this.description = description;
+    public Date getAboardDate() {
+        return aboardDate;
     }
-
     public AssetEntity(int id) {
         this.id = id;
-        this.title = title;
-        this.healthyStatus = healthyStatus;
-        this.description = description;
     }
 
-        public AssetEntity(int id, String title, Boolean healthyStatus, String description) {
-            this.id = id;
-            this.title = title;
-            this.healthyStatus = healthyStatus;
-            this.description = description;
-        }
 
 
 }
