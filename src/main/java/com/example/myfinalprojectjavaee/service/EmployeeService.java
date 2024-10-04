@@ -25,37 +25,6 @@ public class EmployeeService {
         return employeeRepo.findAllByNameAndFamily(name,family);
     }
 
-    public boolean addOne(EmployeeEntity employeeEntity) {
-        try {
-            employeeRepo.save(employeeEntity);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    public boolean editOne(EmployeeEntity employeeEntity) {
-        try {
-            employeeRepo.save(employeeEntity);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-    public boolean deleteOne(int id) {
-        try {
-            employeeRepo.deleteById(id);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    public List<EmployeeEntity> getAll(){
-        return employeeRepo.findAll(Sort.by(Sort.Direction.ASC, "id"));
-    }
-
-
 
     public List<EmployeeEntity> getAllEmployeeEntitys() {
         return employeeRepo.findAll();

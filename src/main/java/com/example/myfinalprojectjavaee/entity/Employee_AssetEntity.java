@@ -40,4 +40,8 @@ public class Employee_AssetEntity {
 
     @Column
     private Date unassignedDate;
+
+    public Date getAboardDate() {
+        return this.assetEntity != null ? this.assetEntity.getAboardDate() : null;
+    }
 }

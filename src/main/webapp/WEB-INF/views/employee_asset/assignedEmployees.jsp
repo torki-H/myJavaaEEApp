@@ -28,6 +28,7 @@
                 <th>assignStatus</th>
                 <th>assignedDate</th>
                 <th>unassignedDate</th>
+                <th>aboardDate</th>
                 <th>order of assign</th>
             </tr>
             </thead>
@@ -50,6 +51,9 @@
                     </td>
                     <td><c:out value="${employeeAsset.assignedDate}"/></td>
                     <td><c:out value="${employeeAsset.unassignedDate}"/></td>
+
+                    <td><c:out value="${employeeAsset.aboardDate}"/> <!-- نمایش تاریخ aboardDate --></td>
+
 
                     <td><c:out value="${employeeAsset.version}"/></td>
 

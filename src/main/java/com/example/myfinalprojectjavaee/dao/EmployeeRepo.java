@@ -18,14 +18,6 @@ public interface EmployeeRepo extends JpaRepository<EmployeeEntity,Integer> {
 
     EmployeeEntity findEmployeeEntityById(int id);
 
-
-
-//    @Query("SELECT emp FROM employee emp " +
-//            "LEFT JOIN employee_asset emp_asset ON emp.Id = emp_asset.employeeEntity.Id " +
-//            "WHERE (emp_asset.assetEntity.id != :assetId OR emp_asset.assetEntity.id IS NULL) " +
-//            "AND (emp_asset.assignStatus IS NULL OR emp_asset.assignStatus = false)")
-//    List<EmployeeEntity> findAvailableEmployeesForAsset(@Param("assetId") int assetId);
-
     @Query(" SELECT emp FROM employee emp" +
             " LEFT JOIN employee_asset emp_aset" +
             " ON emp.Id = emp_aset.employeeEntity.Id" +
